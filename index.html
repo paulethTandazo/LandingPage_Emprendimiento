@@ -23,9 +23,228 @@
     href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Marcellus&display=swap"
     rel="stylesheet">
     <style>
-  .billboard-title {
-    color:#0e6ac2; 
+#billboard {
+  position: relative;
+  min-height: 800px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* ✅ necesario para la ola */
+  padding: 4rem 0;
+}
+
+/* OLA (shape divider) al final del billboard */
+.billboard-wave {
+  position: absolute;
+  bottom: -1px;    /* -1px para evitar línea entre secciones */
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 2;      /* por encima del fondo/overlay, por debajo del contenido si te estorba súbelo a 3 */
+  pointer-events: none;
+}
+
+/* Fondo */
+.background-image-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* BLUR aplicado aquí + overlay */
+.billboard-background-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.1); /* evita bordes cortados por el blur */
+}
+
+/* Overlay color e0f2f7 */
+.background-image-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ffeddb(140, 158, 162, 0.6); /* tono e0f2f7 translúcido */
+  z-index: 1;
+}
+
+#billboard .billboard-title {
+  color:#00618e;
+}
+
+#billboard .btn-primary {
+  color:#ffffff;
+  background-color: #00618e;
+  border-color: #00618e;
+}
+
+#billboard .container {
+  position: relative;
+  z-index: 2; /* subimos texto delante del overlay */
+}
+
+.billboard-content {
+  color: #000;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+  text-align: left;
+}
+
+/* Fondo */
+.planes-bg {
+  background-color: #2b607c;
+}
+
+/* Listas */
+.plan-list {
+  display: inline-block; /* convierte la lista en bloque centrable */
+  text-align: left;      /* mantiene el texto alineado normal */
+
+}
+.plan-list li {
+  margin-bottom: 6px;
+}
+
+/* Títulos de cards */
+.plan-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+}
+
+/* Sección y fondo coherente con la ola */
+#purpose-flip {
+  background: #ffffff;
+}
+
+/* Flip card base */
+.flip-card {
+  display: block;
+  perspective: 1000px;
+  cursor: pointer;
+}
+.flip-card input {
+  display: none; /* ocultamos el checkbox */
+}
+.flip-inner {
+  position: relative;
+  width: 100%;
+  min-height: 240px;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+/* Frente y dorso */
+.flip-face {
+  position: absolute;
+  inset: 0;
+  padding: 22px;
+  border-radius: 14px;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Frente: bloque #2b607c con texto blanco */
+.flip-front {
+  background: #2b607c;
+  color: #fff;
+  text-align: center;
+}
+.flip-front h4 {
+  font-weight: 700;        /* título en negrita */
+  color: #fff;             /* blanco */
+  font-size: 1.1rem;       /* h4 más pequeño */
+  margin: 0;
+}
+.front-caption {
+  opacity: 0.85;
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+
+/* Dorso: contenido claro para lectura */
+.flip-back {
+  background: #ffffff;
+  color: #1b2a34;
+  transform: rotateY(180deg);
+  border: 1px solid rgba(43,96,124,0.2);
+}
+.flip-back h4 {
+  font-weight: 700;
+  color: #2b607c;
+  font-size: 1.05rem;
+  margin: 0;
+}
+.flip-back p {
+  font-size: 0.95rem;
+  margin-bottom: 0;
+}
+
+/* Estado volteado por clic/tap */
+.flip-card input:checked + .flip-inner {
+  transform: rotateY(180deg);
+}
+
+/* Accesibilidad por teclado: enfoque visible */
+.flip-card:focus-within .flip-inner {
+  box-shadow: 0 0 0 3px rgba(0,97,142,0.25);
+}
+
+/* Responsive: altura mínima un poco mayor en móvil si lo necesitas */
+@media (max-width: 576px) {
+  .flip-inner { min-height: 260px; }
+}
+
+/* Botones en dorso ODS */
+#purpose-flip .btn-outline-light:hover {
+  background:#fff; color:#2b607c; border-color:#fff;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  #purpose img {
+    max-width: 250px;
   }
+  #purpose h4 {
+    font-size: 1.1rem;
+  }
+  #purpose p {
+    font-size: 0.9rem;
+  }
+}
+
+/* --- Media Query para Responsividad --- */
+
+@media (max-width: 767px) {
+  #billboard {
+    min-height: 450px;
+    padding: 3rem 0;
+  }
+
+  #billboard .display-4 {
+    font-size: 2.5rem;
+  }
+
+  #billboard .lead {
+    font-size: 1.1rem;
+  }
+  
+  #billboard .btn-lg {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+}
 </style>
 </head>
 
@@ -159,44 +378,6 @@
   <div class="preloader text-white fs-6 text-uppercase overflow-hidden"></div>
 
   <div class="search-popup">
-    <div class="search-popup-container">
-
-      <form role="search" method="get" class="form-group" action="">
-        <input type="search" id="search-form" class="form-control border-0 border-bottom"
-          placeholder="Type and press enter" value="" name="s" />
-        <button type="submit" class="search-submit border-0 position-absolute bg-white"
-          style="top: 15px;right: 15px;"><svg class="search" width="24" height="24">
-            <use xlink:href="#search"></use>
-          </svg></button>
-      </form>
-
-      <h5 class="cat-list-title">Browse Categories</h5>
-
-      <ul class="cat-list">
-        <li class="cat-list-item">
-          <a href="#" title="Jackets">Jackets</a>
-        </li>
-        <li class="cat-list-item">
-          <a href="#" title="T-shirts">T-shirts</a>
-        </li>
-        <li class="cat-list-item">
-          <a href="#" title="Handbags">Handbags</a>
-        </li>
-        <li class="cat-list-item">
-          <a href="#" title="Accessories">Accessories</a>
-        </li>
-        <li class="cat-list-item">
-          <a href="#" title="Cosmetics">Cosmetics</a>
-        </li>
-        <li class="cat-list-item">
-          <a href="#" title="Dresses">Dresses</a>
-        </li>
-        <li class="cat-list-item">
-          <a href="#" title="Jumpsuits">Jumpsuits</a>
-        </li>
-      </ul>
-
-    </div>
   </div>
 
   <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="offcanvasCart" aria-labelledby="My Cart">
@@ -304,30 +485,222 @@
     </div>
   </nav>
 
-<section id="billboard" class="bg-white py-5">
-  <div class="container">
+<section id="billboard" class="bg-white py-5 position-relative">
+  <div class="background-image-wrapper">
+      <img src="https://i.postimg.cc/d3jb4TCW/Gemini-Generated-Image-3z2wsz3z2wsz3z2w.png"
+         class="billboard-background-image">
+  </div>
+
+  <div class="container position-relative z-index-1">
     <div class="row align-items-center">
-      
-      <div class="col-lg-6 col-md-12 text-center text-lg-start" data-aos="fade-up">
-        
-        <h1 class="display-4 fw-bold mb-3 billboard-title text-center">Toma el control de tu bienestar.</h1> 
-        
-        <p class="lead mb-4 text-dark text-center">Descubre cómo manejar la diabetes y la hipertensión con las herramientas y el apoyo que necesitas.</p>
-        
-        <div class="d-grid gap-2 d-md-flex justify-content-center">
-          
-          <a href="#contacto" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold">Contáctanos</a>
-          <a href="#registro" class="btn btn-outline-primary btn-lg px-4 fw-bold">Regístrate</a>
+      <div class="col-lg-8 col-md-10 text-white" data-aos="fade-up">
+        <h1 class="display-4 fw-bold mb-3 billboard-title">
+          Toma el control de tu bienestar.
+        </h1> 
+        <p class="lead mb-4">
+          Descubre cómo manejar la diabetes y la hipertensión con las herramientas y el apoyo que necesitas.
+        </p>
+        <div class="d-grid gap-2 d-sm-flex">
+          <a href="#registro" class="btn btn-primary btn-lg px-4 fw-bold">
+            Regístrate ahora
+          </a>
         </div>
       </div>
+    </div>
+  </div>
 
-      <div class="col-lg-6 col-md-12 text-center mt-5 mt-lg-0" data-aos="fade-up" data-aos-delay="250">
-        <img src="https://i.postimg.cc/s2JNdHYf/Imagen-Principal.png" class="img-fluid" alt="Persona realizando ejercicio suave en un lago">
+</section>
+
+<section id="purpose-flip" class="py-5">
+  <div class="container">
+
+    <div class="row justify-content-center g-4">
+
+      <!-- Card 1: Misión -->
+      <div class="col-lg-4 col-md-6">
+        <label class="flip-card">
+          <input type="checkbox" aria-label="Ver detalle Misión">
+          <div class="flip-inner">
+            <!-- Frente -->
+            <div class="flip-face flip-front">
+              <h4 class="mb-2">Misión</h4>
+              <p class="front-caption">Haz clic para ver más</p>
+            </div>
+            <!-- Dorso -->
+            <div class="flip-face flip-back">
+              <h4 class="mb-3">Misión</h4>
+              <p>
+                Facilitar la adherencia al tratamiento mediante una app que promueva el autocuidado,
+                la educación en salud y el acompañamiento profesional continuo.
+              </p>
+            </div>
+          </div>
+        </label>
+      </div>
+
+      <!-- Card 2: Desafíos -->
+      <div class="col-lg-4 col-md-6">
+        <label class="flip-card">
+          <input type="checkbox" aria-label="Ver detalle Desafíos">
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <h4 class="mb-2">Desafíos</h4>
+              <p class="front-caption">Haz clic para ver más</p>
+            </div>
+            <div class="flip-face flip-back">
+              <h4 class="mb-3">Desafíos</h4>
+              <p>
+                Baja adherencia por olvido de dosis, poca educación en salud y acceso limitado
+                a información confiable. Nuestra app aborda estos puntos con recordatorios, métricas y contenidos.
+              </p>
+            </div>
+          </div>
+        </label>
+      </div>
+
+      <!-- Card 3: ODS 3 -->
+      <div class="col-lg-4 col-md-6">
+        <label class="flip-card">
+          <input type="checkbox" aria-label="Ver detalle ODS 3">
+          <div class="flip-inner">
+            <div class="flip-face flip-front">
+              <h4 class="mb-2">ODS 3 • Salud</h4>
+              <p class="front-caption">Haz clic para ver más</p>
+            </div>
+            <div class="flip-face flip-back text-center">
+              <h4 class="mb-3">ODS 3 • Salud y Bienestar</h4>
+              <p class="mb-3">
+                Alineados a reducir la mortalidad por ENT, promoviendo bienestar y autocuidado.
+              </p>
+              <div class="d-flex flex-wrap justify-content-center gap-2">
+                <a href="https://www.un.org/sustainabledevelopment/es/health/" target="_blank" class="btn btn-light btn-sm fw-bold px-3">
+                  Conoce el ODS 3
+                </a>
+                <a href="#registro" class="btn btn-outline-light btn-sm fw-bold px-3">
+                  Empieza Hoy
+                </a>
+              </div>
+            </div>
+          </div>
+        </label>
       </div>
 
     </div>
   </div>
 </section>
+
+<section class="why-app-solution">
+<h3 class="section-title mb-4 text-center" style="color: #00618e;">
+  ¿Por qué usar una App es la solución?
+</h3>
+  <div class="row justify-content-center gap-1">
+
+    <!-- Seguimiento Personalizado -->
+    <div class="col-md-3 text-center" data-aos="fade-in" data-aos-delay="0">
+      <div class="feature-item">
+        <img src="https://i.postimg.cc/9Qhs7zHX/seguimiento.png" height="100" width="100" alt="Seguimiento">
+        <h5 class="feature-title mt-3">Seguimiento Personalizado</h5>
+        <p class="feature-description">
+          Recordatorios adaptados al tratamiento, horarios y necesidades del paciente.
+        </p>
+      </div>
+    </div>
+
+    <!-- Monitoreo en Tiempo Real -->
+    <div class="col-md-3 text-center" data-aos="fade-in" data-aos-delay="300">
+      <div class="feature-item">
+        <img src="https://i.postimg.cc/1XVrW06r/vigilancia.png" height="100" width="100" alt="Monitoreo">
+        <h5 class="feature-title mt-3">Monitoreo en Tiempo Real</h5>
+        <p class="feature-description">
+          Visualización del progreso, métricas y alertas sobre adherencia al tratamiento.
+        </p>
+      </div>
+    </div>
+
+    <!-- Conexión Paciente-Profesional -->
+    <div class="col-md-3 text-center" data-aos="fade-in" data-aos-delay="600">
+      <div class="feature-item">
+        <img src="https://i.postimg.cc/DZjxpyNr/discusion.png" height="100" width="100" alt="Conexión">
+        <h5 class="feature-title mt-3">Conexión con Profesionales</h5>
+        <p class="feature-description">
+          Comunicación directa para recibir acompañamiento y ajustes médicos oportunos.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+<section id="planes" class="py-5 position-relative planes-bg">
+  <div class="container text-center">
+
+    <div class="row">
+      <div class="col-12">
+        <h4 class="text-center mb-4" style="font-size: 25px; font-weight: bold; color: white;">
+          Contrata Nuestros Servicios
+        </h4>
+        <h2 class="subHeader mb-5" style="font-weight: bold; color: white;">
+          Elige tu <span style="color:white">Plan</span>
+        </h2>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+
+      <!-- Plan Gratis -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm p-4 text-center plan-card">
+          <img src="https://i.postimg.cc/rpJvNTNX/oro-1.png" class="img-fluid mx-auto"
+               style="height:100px; width:auto;" alt="Plan Gratis">
+
+          <h4 class="mt-4 plan-title"> Plan Gratuito
+            <span class="d-block text-muted" style="font-size:.9rem;">Sin Costo</span>
+          </h4>
+
+          <p class="price text-success my-3" style="font-size:1.8rem;">Gratis</p>
+          <p style="font-size:.9rem;">Comienza a mejorar tu adherencia</p>
+
+          <ul class="plan-list">
+            <li>Hasta 10 medicamentos</li>
+            <li>5 reportes mensuales</li>
+            <li>Buscador limitado</li>
+            <li>Noticias limitadas</li>
+            <li>2 usuarios por cuenta</li>
+          </ul>
+
+          <button class="btn btn-success w-100 mt-2">Empezar Ahora</button>
+        </div>
+      </div>
+
+      <!-- Plan Gold -->
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 shadow-sm p-4 text-center plan-card">
+          <img src="https://i.postimg.cc/ZYgXcVpN/oro.png" class="img-fluid mx-auto"
+               style="height:100px; width:auto;" alt="Plan Gold">
+
+          <h4 class="mt-4 plan-title">
+            <p color="black">Plan Gold</p>
+            <span class="d-block text-muted" style="font-size:.9rem;">Acceso Premium</span>
+          </h4>
+
+          <p class="price text-warning my-3" style="font-size:1.8rem;">$4.99</p>
+          <p style="font-size:.9rem;">Para gestión completa y avanzada</p>
+
+          <ul class="plan-list">
+            <li>Buscador ilimitado</li>
+            <li>Noticias ilimitadas</li>
+            <li>Usuarios ilimitados</li>
+            <li>Reportes ilimitados</li>
+            <li>Medicamentos ilimitados</li>
+          </ul>
+
+          <button class="btn btn-warning w-100 mt-2">Obtener Gold</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
 <section class="features py-5">
   <div class="container">
@@ -373,42 +746,6 @@
   </div>
 </section>
 
-<section class="collection bg-light position-relative py-5">
-  <div class="container">
-    <div class="row">
-
-      <div class="title-xlarge text-uppercase txt-fx domino">Propósito</div>
-
-      <div class="collection-item d-flex flex-wrap my-5">
-        
-        <div class="col-md-6 column-container">
-          <div class="image-holder d-flex justify-content-center align-items-center h-100">
-            
-            <img src="https://i.postimg.cc/BQbxgYYr/3-1-e1568941998279.png" alt="ODS 3: Salud y Bienestar" class="product-image border border-2 rounded-3" width="450" height="500">
-          
-          </div>
-        </div>
-
-        <div class="col-md-6 column-container d-flex align-items-center">
-          
-          <div class="collection-content bg-white p-4 p-md-5 rounded-3 shadow-sm mx-auto text-center">
-            
-            <h4 class="element-title text-uppercase text-center" style="color: #0e6ac2;">Nuestra Misión</h4>
-            
-            <p class="fw-bold text-dark">El desafío:</p>
-            <p class="fst-italic">"La baja adherencia a tratamientos para hipertensión y diabetes en Guayaquil provoca complicaciones graves, mayor demanda hospitalaria y reducción de calidad de vida en pacientes con enfermedades crónicas."</p>
-
-            <p class="mt-4 text-dark">Nos alineamos con el <strong>ODS 3 (Salud y Bienestar)</strong>, que busca reducir la mortalidad por enfermedades no transmisibles. Facilitar el autocuidado es una contribución directa a esta meta global, mejorando vidas y reduciendo la presión hospitalaria.</p>
-            
-            <a href="https://www.un.org/sustainabledevelopment/es/health/" target="_blank" class="btn text-uppercase mt-3" style="background-color: #0e6ac2; border-color: #0e6ac2; color: #fff;">Conoce el ODS 3</a>
-          
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</section>
 <section class="blog py-5 bg-white"> <div class="container">
     
     <div class="d-flex flex-wrap justify-content-between align-items-center mt-5 mb-3">
