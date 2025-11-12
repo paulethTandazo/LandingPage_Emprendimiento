@@ -209,7 +209,51 @@
 #purpose-flip .btn-outline-light:hover {
   background:#fff; color:#2b607c; border-color:#fff;
 }
+#services h1 {
+  font-weight: 700;
+}
 
+#services p {
+  font-size: 1rem;
+}
+
+#services .shadow-sm:hover {
+  transform: translateY(-5px);
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+#services img {
+  transition: transform 0.3s ease;
+}
+
+#services .shadow-sm:hover img {
+  transform: scale(1.1);
+}
+
+#contactos .form-label {
+  font-weight: 600;
+  color: #2b607c;
+}
+
+#contactos input,
+#contactos textarea,
+#contactos select {
+  border: 1px solid #d0d0d0;
+  transition: border-color 0.2s;
+}
+
+#contactos input:focus,
+#contactos textarea:focus,
+#contactos select:focus {
+  border-color: #2b607c;
+  box-shadow: 0 0 4px rgba(43,96,124,0.2);
+}
+
+#contactos button:hover {
+  background-color: #00618e;
+  border-color: #00618e;
+}
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -705,49 +749,55 @@
 </section>
 
 
-<section class="features py-5">
+<section id="services" class="py-5" style="background-color:#ffffff;">
   <div class="container">
+    <h2 class="text-center mb-4" style="color:#00618e;">Nuestros Servicios</h2>
+    <p class="text-center mb-5" style="color:#333;">
+      Explora las funcionalidades que SEGUISALUD te ofrece para cuidar tu bienestar y mejorar tu calidad de vida.
+    </p>
 
     <div class="row">
       
-      <div class="col-md-3 text-center" data-aos="fade-in" data-aos-delay="0">
-        <div class="py-5">
-          <img src="https://i.postimg.cc/4NS5tk5V/configuraciones-web.png" alt="Icono de Programación" class="mb-3" width="60" height="60">
-          
-          <h4 class="element-title text-capitalize my-3">Programa tu Aplicación</h4>
-          <p>Configura fácilmente tus recordatorios de medicinas, citas y monitoreo de glucosa.</p>
+      <!-- Programa tu Aplicación -->
+      <div class="col-md-6 mb-4">
+        <div class="p-4 shadow-sm rounded bg-light text-center h-100">
+          <img src="https://i.postimg.cc/4NS5tk5V/configuraciones-web.png" alt="Icono de Programación" class="mb-3" style="width:60px;">
+          <h5 class="fw-bold mb-2" style="color:#2b607c;">Programa tu Aplicación</h5>
+          <p>Configura fácilmente tus recordatorios de medicinas, citas y monitoreo de glucosa desde un solo lugar.</p>
         </div>
       </div>
 
-      <div class="col-md-3 text-center" data-aos="fade-in" data-aos-delay="300">
-        <div class="py-5">
-          <img src="https://i.postimg.cc/HWS4DDF8/informe.png" alt="Icono de Reportes" class="mb-3" height="64" width="64">
-
-          <h4 class="element-title text-capitalize my-3">Reportes Instantáneos</h4>
-          <p>Visualiza tu progreso con gráficos claros y compártelos con tu médico al instante.</p>
+      <!-- Reportes Instantáneos -->
+      <div class="col-md-6 mb-4">
+        <div class="p-4 shadow-sm rounded bg-light text-center h-100">
+          <img src="https://i.postimg.cc/HWS4DDF8/informe.png" alt="Icono de Reportes" class="mb-3" style="width:60px;">
+          <h5 class="fw-bold mb-2" style="color:#2b607c;">Reportes Instantáneos</h5>
+          <p>Visualiza tu progreso con gráficos claros y comparte tus resultados con tu médico de forma rápida y sencilla.</p>
         </div>
       </div>
 
-      <div class="col-md-3 text-center" data-aos="fade-in" data-aos-delay="600">
-        <div class="py-5">
-          <img src="https://i.postimg.cc/Hx65gXvr/secundario.png" alt="Icono de Bienestar" class="mb-3" height="64" width="64">
-          
-          <h4 class="element-title text-capitalize my-3">Evalúa tu Bienestar</h4>
-          <p>Registra tus comidas, actividad física y estado de ánimo para mejorar tus hábitos diarios.</p>
+      <!-- Evalúa tu Bienestar -->
+      <div class="col-md-6 mb-4">
+        <div class="p-4 shadow-sm rounded bg-light text-center h-100">
+          <img src="https://i.postimg.cc/Hx65gXvr/secundario.png" alt="Icono de Bienestar" class="mb-3" style="width:60px;">
+          <h5 class="fw-bold mb-2" style="color:#2b607c;">Evalúa tu Bienestar</h5>
+          <p>Registra tus comidas, actividad física y estado de ánimo para desarrollar hábitos más saludables día a día.</p>
         </div>
       </div>
 
-      <div class="col-md-3 text-center" data-aos="fade-in" data-aos-delay="900">
-        <div class="py-5">
-          <img src="https://i.postimg.cc/fbwJRk9S/libertad-de-prensa.png" alt="Icono de Independencia" class="mb-3" height="64" width="64">
-          
-          <h4 class="element-title text-capitalize my-3">Genera tu Independencia</h4>
-          <p>Toma el control y vive con libertad. La app te apoya sin recordarte constantemente tu condición.</p>
+      <!-- Genera tu Independencia -->
+      <div class="col-md-6 mb-4">
+        <div class="p-4 shadow-sm rounded bg-light text-center h-100">
+          <img src="https://i.postimg.cc/fbwJRk9S/libertad-de-prensa.png" alt="Icono de Independencia" class="mb-3" style="width:60px;">
+          <h5 class="fw-bold mb-2" style="color:#2b607c;">Genera tu Independencia</h5>
+          <p>Toma el control de tu bienestar y vive con libertad. La app te acompaña, sin recordarte constantemente tu condición.</p>
         </div>
       </div>
+
     </div>
   </div>
 </section>
+
 
 <section class="blog py-5 bg-white"> <div class="container">
     
@@ -823,163 +873,113 @@
 </section>
 
 
-<!-- =======================
-Sección Registro de Usuarios (Centrada)
-=========================== -->
-<section id="registro" class="bg-light py-5">
+<section id="contactos" class="py-5" style="background-color: white;">
   <div class="container">
+    <h2 class="text-center mb-4" style="color:#00618e;">Contáctate con el equipo</h2>
+    <p class="text-center mb-5">
+      No olvides dejarnos tus comentarios o preguntas. Tus mensajes nos ayudan a mejorar nuestra atención y servicio.
+    </p>
+
     <div class="row justify-content-center">
+      <div class="col-lg-6">
 
-      <!-- Columna contenedora del formulario. 
-           'col-lg-8' lo hace más ancho en pantallas grandes.
-           'col-md-10' lo ajusta para tabletas.
-      -->
-      <div class="col-lg-8 col-md-10" data-aos="fade-up">
-        
-        <!-- El "recuadro" blanco para el formulario -->
-        <div class="bg-white p-4 p-md-5 rounded-3 shadow-sm border">
-          
-          <!-- Títulos del formulario -->
-          <h3 class="text-center" style="color: #0e6ac2;">Regístrate Gratis</h3>
-          <p class="text-center text-dark mb-4">Déjanos tus datos y sé el primero en saber cuándo lanzamos la app.</p>
-
-          <!-- Inicio del Formulario -->
-          <form action="#" method="POST">
-            
-            <!-- Fila para Nombre y Apellido -->
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <label for="form_nombre" class="form-label fw-bold">Nombre</label>
-                <input type="text" class="form-control" id="form_nombre" placeholder="Tu nombre" required>
-              </div>
-              <div class="col-md-6 mb-3">
-                <label for="form_apellido" class="form-label fw-bold">Apellido</label>
-                <input type="text" class="form-control" id="form_apellido" placeholder="Tu apellido" required>
-              </div>
+        <form id="contactForm" class="p-4 rounded shadow" style="background-color: #e7edf3;">
+          <div class="row mb-3">
+            <div class="col">
+              <label for="name" class="form-label">Nombre</label>
+              <input type="text" class="form-control" id="name" placeholder="Ingresa tu nombre">
             </div>
-            
-            <!-- Campo Email -->
-            <div class="mb-3">
-              <label for="form_email" class="form-label fw-bold">Correo Electrónico</label>
-              <input type="email" class="form-control" id="form_email" placeholder="tucorreo@ejemplo.com" required>
+            <div class="col">
+              <label for="email" class="form-label">Correo electrónico</label>
+              <input type="email" class="form-control" id="email" placeholder="Ingresa tu correo">
             </div>
+          </div>
 
-            <!-- Checklist de Enfermedad -->
-            <div class="mb-4">
-              <label class="form-label fw-bold">¿Qué condición te interesa manejar?</label>
-              
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="hipertension" id="check_hipertension">
-                <label class="form-check-label" for="check_hipertension">
-                  Hipertensión
-                </label>
-              </div>
-              
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="diabetes" id="check_diabetes">
-                <label class="form-check-label" for="check_diabetes">
-                  Diabetes (Tipo 1 o Tipo 2)
-                </label>
-              </div>
-
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="ambas" id="check_ambas">
-                <label class="form-check-label" for="check_ambas">
-                  Ambas condiciones
-                </label>
-              </div>
-
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="prevencion" id="check_prevencion">
-                <label class="form-check-label" for="check_prevencion">
-                  Solo prevención / Cuidado de un familiar
-                </label>
-              </div>
+          <div class="row mb-3">
+            <div class="col">
+              <label for="phone" class="form-label">Número de teléfono</label>
+              <input type="tel" class="form-control" id="phone" placeholder="Ingresa tu número de contacto">
             </div>
-            
-            <!-- Botón de Envío -->
-            <div class="d-grid">
-              <button type="submit" class="btn btn-lg text-uppercase text-white" style="background-color: #0e6ac2; border-color: #0e6ac2;">
-                Enviar
-              </button>
+            <div class="col">
+              <label for="category" class="form-label">Categoría</label>
+              <select class="form-select" id="category">
+                <option selected disabled>Selecciona una categoría</option>
+                <option value="diabetes">Diabetes</option>
+                <option value="hipertension">Hipertensión</option>
+                <option value="otro">Otro</option>
+              </select>
             </div>
+          </div>
 
-          </form>
-          <!-- Fin del Formulario -->
+          <div class="mb-3">
+            <label for="message" class="form-label">Mensaje</label>
+            <textarea class="form-control" id="message" rows="5" placeholder="Escribe tu mensaje aquí"></textarea>
+          </div>
 
-        </div>
-      </div> <!-- Fin de la columna contenedora -->
+          <div class="text-center">
+            <button type="submit" class="btn text-white px-5" style="background-color: #2b607c; border-color: #2b607c;">
+              Enviar mensaje
+            </button>
+          </div>
+        </form>
+
+      </div>
     </div>
   </div>
 </section>
 
-
-
-<!-- =======================
-Footer
-=========================== -->
-<footer id="footer" class="bg-dark text-white py-5">
+<footer class="py-5 bg-white">
   <div class="container">
-    <div class="row">
+    <div class="row text-center">
 
-      <!-- Columna 1: Logo y Misión -->
-      <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
-        <!-- Puedes reusar el logo de tu navbar -->
-        <img src="https://i.postimg.cc/YCrFDXC1/image.png" alt="Logo App Salud" width="150" height="45" class="mb-3">
-        <p class="small text-white-50">
-          Facilitando el manejo de la diabetes e hipertensión en Guayaquil, un paso a la vez.
-        </p>
+      <!-- Contacto -->
+      <div class="col-md-4 mb-4">
+        <div class="icon">
+          <i class="fas fa-comments" style="color:#2b607c; font-size:2rem;"></i>
+        </div>
+        <h5 class="mt-3" style="color:#00618e;">CONTACTO</h5>
+        <button id="footerContactBtn" class="btn btn-outline-primary" style="border-color:#2b607c; color:#2b607c;">
+          ENVIAR MENSAJE
+        </button>
+        <p class="mt-2 text-muted mb-0">+593 99 123 4567</p>
+        <p class="text-muted">contacto@seguisalud.ec</p>
       </div>
 
-      <!-- Columna 2: Enlaces Rápidos -->
-      <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-        <h5 class="text-uppercase mb-3">Enlaces</h5>
-        <ul class="list-unstyled">
-          <li class="mb-2"><a href="#billboard" class="text-white-50 text-decoration-none">Inicio</a></li>
-          <li class="mb-2"><a href="#features" class="text-white-50 text-decoration-none">Características</a></li>
-          <li class="mb-2"><a href="#nuestro-impacto" class="text-white-50 text-decoration-none">Propósito</a></li>
-          <li class="mb-2"><a href="#registro" class="text-white-50 text-decoration-none">Registro</a></li>
-        </ul>
+      <!-- Dirección -->
+      <div class="col-md-4 mb-4">
+        <div class="icon">
+          <i class="fas fa-map-marker-alt" style="color:#2b607c; font-size:2rem;"></i>
+        </div>
+        <h5 class="mt-3" style="color:#00618e;">DIRECCIÓN</h5>
+        <p class="text-muted mb-2">Guayaquil, Ecuador</p>
+        <div class="social-icons">
+          <a href="#" class="mx-2" style="color:#2b607c;"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="mx-2" style="color:#2b607c;"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="mx-2" style="color:#2b607c;"><i class="fab fa-instagram"></i></a>
+        </div>
       </div>
 
-      <!-- Columna 3: Legal -->
-      <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-        <h5 class="text-uppercase mb-3">Legal</h5>
-        <ul class="list-unstyled">
-          <li class="mb-2"><a href="#terminos" class="text-white-50 text-decoration-none">Términos y Condiciones</a></li>
-          <li class="mb-2"><a href="#privacidad" class="text-white-50 text-decoration-none">Política de Privacidad</a></li>
-        </ul>
-      </div>
-
-      <!-- Columna 4: Redes Sociales -->
-      <div class="col-lg-3 col-md-12">
-        <h5 class="text-uppercase mb-3">Síguenos</h5>
-        <ul class="list-unstyled">
-          <!-- NOTA: Reemplaza '#' con tus URLs reales -->
-          <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Facebook</a></li>
-          <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">Instagram</a></li>
-          <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none">LinkedIn</a></li>
-        </ul>
+      <!-- Horarios -->
+      <div class="col-md-4 mb-4">
+        <div class="icon">
+          <i class="fas fa-clock" style="color:#2b607c; font-size:2rem;"></i>
+        </div>
+        <h5 class="mt-3" style="color:#00618e;">HORARIOS DE ATENCIÓN</h5>
+        <p class="text-muted mb-1">Lunes a Viernes: 08h00 - 18h00</p>
+        <p class="text-muted mb-1">Sábado: 09h00 - 13h00</p>
+        <p class="text-muted">Domingo: Cerrado</p>
       </div>
 
     </div>
 
-    <!-- Separador y Copyright -->
-    <hr class="my-4" style="border-top: 1px solid rgba(255, 255, 255, 0.1);">
-
-    <div class="row">
-      <div class="col-12 text-center">
-        <p class="small text-white-50">
-          &copy; 2025 SEGUSALUD. Todos los derechos reservados.
-        </p>
-        <p class="small text-white-50">
-          Guayaquil, Ecuador.
-        </p>
-      </div>
+    <!-- Parte inferior -->
+    <div class="text-center mt-4 text-muted">
+      <p class="mb-0">&copy; SEGUISALUD 2025 | Desarrollado por el equipo SEGUISALUD</p>
     </div>
-
   </div>
 </footer>
+
+ 
   <script src="js/jquery.min.js"></script>
   <script src="js/plugins.js"></script>
   <script src="js/SmoothScroll.js"></script>
