@@ -23,77 +23,69 @@
     href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&family=Marcellus&display=swap"
     rel="stylesheet">
     <style>
+
+/* Contenedor principal del billboard */
 #billboard {
   position: relative;
-  min-height: 800px;
+  min-height: 500px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  overflow: hidden; /* ✅ necesario para la ola */
   padding: 4rem 0;
+  overflow: hidden; /* sigue funcionando si usas ola */
+  background-color: #ffffff; /* o #e0f2f7 si quieres un fondo suave */
 }
 
-/* OLA (shape divider) al final del billboard */
-.billboard-wave {
-  position: absolute;
-  bottom: -1px;    /* -1px para evitar línea entre secciones */
-  left: 0;
-  width: 100%;
-  height: auto;
-  z-index: 2;      /* por encima del fondo/overlay, por debajo del contenido si te estorba súbelo a 3 */
-  pointer-events: none;
-}
-
-/* Fondo */
-.background-image-wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-/* BLUR aplicado aquí + overlay */
-.billboard-background-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  transform: scale(1.1); /* evita bordes cortados por el blur */
-}
-
-/* Overlay color e0f2f7 */
-.background-image-wrapper::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: #ffeddb(140, 158, 162, 0.6); /* tono e0f2f7 translúcido */
-  z-index: 1;
-}
-
+/* Título y texto */
 #billboard .billboard-title {
-  color:#00618e;
+  color: #00618e;
 }
 
+#billboard .billboard-text {
+  color: #333333;
+}
+
+/* Botón principal */
 #billboard .btn-primary {
-  color:#ffffff;
+  color: #ffffff;
   background-color: #00618e;
   border-color: #00618e;
 }
 
-#billboard .container {
-  position: relative;
-  z-index: 2; /* subimos texto delante del overlay */
+/* Imagen principal */
+.billboard-hero-image {
+  max-width: 100%;
+  height: auto;
 }
 
-.billboard-content {
-  color: #000;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-  text-align: left;
+/* OLA (shape divider) al final del billboard, si la sigues usando */
+.billboard-wave {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Responsive: en pantallas pequeñas se apilan */
+@media (max-width: 767px) {
+  #billboard {
+    padding: 3rem 0;
+  }
+
+  #billboard .billboard-title {
+    font-size: 2rem;
+  }
+
+  #billboard .billboard-text {
+    font-size: 1rem;
+  }
+
+  .billboard-hero-image {
+    max-width: 80%;
+    margin-top: 1.5rem;
+  }
 }
 
 /* Fondo */
@@ -268,27 +260,6 @@
   }
 }
 
-/* --- Media Query para Responsividad --- */
-
-@media (max-width: 767px) {
-  #billboard {
-    min-height: 450px;
-    padding: 3rem 0;
-  }
-
-  #billboard .display-4 {
-    font-size: 2.5rem;
-  }
-
-  #billboard .lead {
-    font-size: 1.1rem;
-  }
-  
-  #billboard .btn-lg {
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-  }
-}
 </style>
 </head>
 
@@ -528,33 +499,88 @@
       </div>
     </div>
   </nav>
-
-<section id="billboard" class="bg-white py-5 position-relative">
-  <div class="background-image-wrapper">
-      <img src="https://i.postimg.cc/d3jb4TCW/Gemini-Generated-Image-3z2wsz3z2wsz3z2w.png"
-         class="billboard-background-image">
-  </div>
-
-  <div class="container position-relative z-index-1">
+<section id="billboard" class="py-5">
+  <div class="container">
     <div class="row align-items-center">
-      <div class="col-lg-8 col-md-10 text-white" data-aos="fade-up">
+
+      <!-- Columna izquierda: texto -->
+      <div class="col-lg-6 mb-4 mb-lg-0" data-aos="fade-right">
         <h1 class="display-4 fw-bold mb-3 billboard-title">
           Toma el control de tu bienestar.
-        </h1> 
-        <p class="lead mb-4">
+        </h1>
+        <p class="lead mb-4 billboard-text">
           Descubre cómo manejar la diabetes y la hipertensión con las herramientas y el apoyo que necesitas.
         </p>
-        <div class="d-grid gap-2 d-sm-flex">
-          <a href="#registro" class="btn btn-primary btn-lg px-4 fw-bold">
-            Regístrate ahora
-          </a>
-        </div>
+        <a href="#registro" class="btn btn-primary btn-lg px-4 fw-bold">
+          Regístrate ahora
+        </a>
       </div>
+
+      <!-- Columna derecha: imagen -->
+      <div class="col-lg-6 text-center" data-aos="fade-left">
+        <img 
+          src="https://i.postimg.cc/Qd3T2WhS/Imagen-Principal.png" 
+          alt="Ilustración de bienestar y salud"
+          class="img-fluid billboard-hero-image">
+      </div>
+
     </div>
   </div>
 
+  <!-- Si todavía usas la ola al final del billboard, déjala. Si no, puedes borrar esto -->
+  <!--
+  <img class="billboard-wave" src="imf/waves.4484f28ef98e2546b0971c78cb961658.svg" alt="waves">
+  -->
 </section>
 
+<section id="services" class="py-5" style="background-color:#2b607c">
+  <div class="container">
+    <h2 class="text-center mb-4" style="color:#ffffff;">Nuestros Servicios</h2>
+    <p class="text-center mb-5" style="color:#ffffff;">
+      Explora las funcionalidades que SEGUISALUD te ofrece para cuidar tu bienestar y mejorar tu calidad de vida.
+    </p>
+
+    <div class="row">
+      
+      <!-- Programa tu Aplicación -->
+      <div class="col-md-6 mb-4">
+        <div class="p-4 shadow-sm rounded bg-light text-center h-100">
+          <img src="https://i.postimg.cc/4NS5tk5V/configuraciones-web.png" alt="Icono de Programación" class="mb-3" style="width:60px;">
+          <h5 class="fw-bold mb-2" style="color:#2b607c;">Programa tu Aplicación</h5>
+          <p>Configura fácilmente tus recordatorios de medicinas, citas y monitoreo de glucosa desde un solo lugar.</p>
+        </div>
+      </div>
+
+      <!-- Reportes Instantáneos -->
+      <div class="col-md-6 mb-4">
+        <div class="p-4 shadow-sm rounded bg-light text-center h-100">
+          <img src="https://i.postimg.cc/HWS4DDF8/informe.png" alt="Icono de Reportes" class="mb-3" style="width:60px;">
+          <h5 class="fw-bold mb-2" style="color:#2b607c;">Reportes Instantáneos</h5>
+          <p>Visualiza tu progreso con gráficos claros y comparte tus resultados con tu médico de forma rápida y sencilla.</p>
+        </div>
+      </div>
+
+      <!-- Evalúa tu Bienestar -->
+      <div class="col-md-6 mb-4">
+        <div class="p-4 shadow-sm rounded bg-light text-center h-100">
+          <img src="https://i.postimg.cc/Hx65gXvr/secundario.png" alt="Icono de Bienestar" class="mb-3" style="width:60px;">
+          <h5 class="fw-bold mb-2" style="color:#2b607c;">Evalúa tu Bienestar</h5>
+          <p>Registra tus comidas, actividad física y estado de ánimo para desarrollar hábitos más saludables día a día.</p>
+        </div>
+      </div>
+
+      <!-- Genera tu Independencia -->
+      <div class="col-md-6 mb-4">
+        <div class="p-4 shadow-sm rounded bg-light text-center h-100">
+          <img src="https://i.postimg.cc/fbwJRk9S/libertad-de-prensa.png" alt="Icono de Independencia" class="mb-3" style="width:60px;">
+          <h5 class="fw-bold mb-2" style="color:#2b607c;">Genera tu Independencia</h5>
+          <p>Toma el control de tu bienestar y vive con libertad. La app te acompaña, sin recordarte constantemente tu condición.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 <section id="purpose-flip" class="py-5">
   <div class="container">
     <h4 class="text-center fw-bold mb-5" style="color:#00618e;">
@@ -637,9 +663,9 @@
 </section>
 
 <section class="why-app-solution">
-<h3 class="section-title mb-4 text-center" style="color: #00618e;">
+<h4 class="section-title mb-4 text-center" style="color: #00618e;">
   ¿Por qué usar una App es la solución?
-</h3>
+</h4>
   <div class="row justify-content-center gap-1">
 
     <!-- Seguimiento Personalizado -->
@@ -748,55 +774,6 @@
   </div>
 </section>
 
-
-<section id="services" class="py-5" style="background-color:#ffffff;">
-  <div class="container">
-    <h2 class="text-center mb-4" style="color:#00618e;">Nuestros Servicios</h2>
-    <p class="text-center mb-5" style="color:#333;">
-      Explora las funcionalidades que SEGUISALUD te ofrece para cuidar tu bienestar y mejorar tu calidad de vida.
-    </p>
-
-    <div class="row">
-      
-      <!-- Programa tu Aplicación -->
-      <div class="col-md-6 mb-4">
-        <div class="p-4 shadow-sm rounded bg-light text-center h-100">
-          <img src="https://i.postimg.cc/4NS5tk5V/configuraciones-web.png" alt="Icono de Programación" class="mb-3" style="width:60px;">
-          <h5 class="fw-bold mb-2" style="color:#2b607c;">Programa tu Aplicación</h5>
-          <p>Configura fácilmente tus recordatorios de medicinas, citas y monitoreo de glucosa desde un solo lugar.</p>
-        </div>
-      </div>
-
-      <!-- Reportes Instantáneos -->
-      <div class="col-md-6 mb-4">
-        <div class="p-4 shadow-sm rounded bg-light text-center h-100">
-          <img src="https://i.postimg.cc/HWS4DDF8/informe.png" alt="Icono de Reportes" class="mb-3" style="width:60px;">
-          <h5 class="fw-bold mb-2" style="color:#2b607c;">Reportes Instantáneos</h5>
-          <p>Visualiza tu progreso con gráficos claros y comparte tus resultados con tu médico de forma rápida y sencilla.</p>
-        </div>
-      </div>
-
-      <!-- Evalúa tu Bienestar -->
-      <div class="col-md-6 mb-4">
-        <div class="p-4 shadow-sm rounded bg-light text-center h-100">
-          <img src="https://i.postimg.cc/Hx65gXvr/secundario.png" alt="Icono de Bienestar" class="mb-3" style="width:60px;">
-          <h5 class="fw-bold mb-2" style="color:#2b607c;">Evalúa tu Bienestar</h5>
-          <p>Registra tus comidas, actividad física y estado de ánimo para desarrollar hábitos más saludables día a día.</p>
-        </div>
-      </div>
-
-      <!-- Genera tu Independencia -->
-      <div class="col-md-6 mb-4">
-        <div class="p-4 shadow-sm rounded bg-light text-center h-100">
-          <img src="https://i.postimg.cc/fbwJRk9S/libertad-de-prensa.png" alt="Icono de Independencia" class="mb-3" style="width:60px;">
-          <h5 class="fw-bold mb-2" style="color:#2b607c;">Genera tu Independencia</h5>
-          <p>Toma el control de tu bienestar y vive con libertad. La app te acompaña, sin recordarte constantemente tu condición.</p>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
 
 
 <section class="blog py-5 bg-white"> <div class="container">
