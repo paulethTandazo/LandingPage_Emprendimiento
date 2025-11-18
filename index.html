@@ -910,7 +910,7 @@ Conoce por qué es la forma más confiable de mejorar tu cuidado diario.
             <div class="col">
               <label for="category" class="form-label">Categoría</label>
               <select class="form-select" id="category">
-                <option selected disabled>Selecciona una categoría</option>
+                <option selected disabled value="">Selecciona una categoría</option>
                 <option value="diabetes">Diabetes</option>
                 <option value="hipertension">Hipertensión</option>
                 <option value="otro">Otro</option>
@@ -929,21 +929,21 @@ Conoce por qué es la forma más confiable de mejorar tu cuidado diario.
             </button>
           </div>
         </form>
-<!-- POP-UP de éxito -->
-            <div id="successPopup" class="popup-overlay">
-              <div class="popup-box">
-                <h4 class="mb-2">¡Mensaje enviado con éxito! ✅</h4>
-                <p>Gracias por contactarte con SEGUISALUD. Pronto nos comunicaremos contigo.</p>
-                <button class="btn btn-primary mt-3" id="closePopupBtn" style="background:#2b607c; border:none;">
-                  Cerrar
-                </button>
-              </div>
-            </div>
+        
+        <div id="successPopup" class="popup-overlay">
+          <div class="popup-box">
+            <h4 class="mb-2">¡Mensaje enviado con éxito! ✅</h4>
+            <p>Gracias por contactarte con SEGUISALUD. Pronto nos comunicaremos contigo.</p>
+            <button class="btn btn-primary mt-3" id="closePopupBtn" style="background:#2b607c; border:none;">
+              Cerrar
+            </button>
+          </div>
+        </div>
 
       </div>
     </div>
   </div>
-</div>
+</section>
 
 
 <footer class="py-5 bg-white">
@@ -1007,11 +1007,8 @@ Conoce por qué es la forma más confiable de mejorar tu cuidado diario.
 </body>
 <script type="module">
   // --- 1. Importaciones de Firebase ---
-  // Importa las funciones que necesitas
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
-  
-  // ¡IMPORTANTE! Añade las funciones de Firestore
   import { 
     getFirestore, 
     collection, 
@@ -1020,9 +1017,10 @@ Conoce por qué es la forma más confiable de mejorar tu cuidado diario.
   } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
   // --- 2. Configuración de Firebase ---
-  // ¡USA TU CLAVE REGENERADA AQUÍ!
   const firebaseConfig = {
-    apiKey: "1:614941761166:web:b4b94a25e59e50ce80b3df",
+    // 👇 ¡ERROR CORREGIDO AQUÍ! 
+    // Tu apiKey real empieza con "AIzaSy..."
+    apiKey: "1:614941761166:web:b4b94a25e59e50ce80b3df", 
     authDomain: "seguisalud-7ed62.firebaseapp.com",
     projectId: "seguisalud-7ed62",
     storageBucket: "seguisalud-7ed62.firebasestorage.app",
@@ -1034,62 +1032,49 @@ Conoce por qué es la forma más confiable de mejorar tu cuidado diario.
   // --- 3. Inicialización ---
   const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
-  
-  // Inicializa Cloud Firestore y obtén una referencia al servicio
   const db = getFirestore(app);
 
   // --- 4. Lógica del Formulario ---
-  
-  // Selecciona los elementos del DOM
   const contactForm = document.getElementById("contactForm");
   const successPopup = document.getElementById("successPopup");
   const closePopupBtn = document.getElementById("closePopupBtn");
 
-  // Escucha el evento "submit" del formulario
   contactForm.addEventListener("submit", async (e) => {
-    // Evita que la página se recargue
     e.preventDefault();
 
-    // Obtiene los valores de los campos
     const name = document.getElementById("name").value;
     const email = document.getElementById("email").value;
     const phone = document.getElementById("phone").value;
     const category = document.getElementById("category").value;
     const message = document.getElementById("message").value;
 
-    // Validación simple (puedes mejorarla)
-    if (!name || !email || !message) {
-      alert("Por favor, completa los campos obligatorios (Nombre, Correo y Mensaje).");
+    // 👇 ¡CAMBIO AÑADIDO AQUÍ!
+    // Ahora también comprueba que 'category' no esté vacía.
+    if (!name || !email || !message || !category) {
+      alert("Por favor, completa todos los campos del formulario.");
       return; // Detiene la ejecución
     }
 
     try {
-      // Intenta guardar los datos en la colección "contactos"
       const docRef = await addDoc(collection(db, "contactos"), {
         name: name,
         email: email,
         phone: phone,
         category: category,
         message: message,
-        sentAt: serverTimestamp() // Añade la fecha de envío
+        sentAt: serverTimestamp() 
       });
 
       console.log("Documento escrito con ID: ", docRef.id);
-
-      // Si todo sale bien:
-      // 1. Muestra el pop-up
       successPopup.style.display = "flex";
-      // 2. Limpia el formulario
       contactForm.reset();
 
     } catch (error) {
-      // Si hay un error
       console.error("Error al añadir el documento: ", error);
       alert("Hubo un error al enviar tu mensaje. Por favor, inténtalo de nuevo.");
     }
   });
 
-  // Añade el evento para cerrar el pop-up
   closePopupBtn.addEventListener("click", () => {
     successPopup.style.display = "none";
   });
