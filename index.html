@@ -891,35 +891,31 @@ Conoce por qué es la forma más confiable de mejorar tu cuidado diario.
       <div class="col-lg-6">
 
         <form id="contactForm" class="p-4 rounded shadow" style="background-color: #e7edf3;">
+          
           <div class="row mb-3">
             <div class="col">
-              <label for="name" class="form-label">Nombre</label>
-              <input type="text" class="form-control" id="name" placeholder="Ingresa tu nombre">
+              <label for="nombres" class="form-label">Nombres</label>
+              <input type="text" class="form-control" id="nombres" placeholder="Ingresa tus nombres">
             </div>
+            <div class="col">
+              <label for="apellidos" class="form-label">Apellidos</label>
+              <input type="text" class="form-control" id="apellidos" placeholder="Ingresa tus apellidos">
+            </div>
+          </div>
+
+          <div class="row mb-3">
             <div class="col">
               <label for="email" class="form-label">Correo electrónico</label>
               <input type="email" class="form-control" id="email" placeholder="Ingresa tu correo">
             </div>
-          </div>
-
-          <div class="row mb-3">
             <div class="col">
               <label for="phone" class="form-label">Número de teléfono</label>
               <input type="tel" class="form-control" id="phone" placeholder="Ingresa tu número de contacto">
             </div>
-            <div class="col">
-              <label for="category" class="form-label">Categoría</label>
-              <select class="form-select" id="category">
-                <option selected disabled value="">Selecciona una categoría</option>
-                <option value="diabetes">Diabetes</option>
-                <option value="hipertension">Hipertensión</option>
-                <option value="otro">Otro</option>
-              </select>
-            </div>
           </div>
 
           <div class="mb-3">
-            <label for="message" class="form-label">Mensaje</label>
+            <label for="message" class="form-label">Comentarios</label>
             <textarea class="form-control" id="message" rows="5" placeholder="Escribe tu mensaje aquí"></textarea>
           </div>
 
@@ -1017,10 +1013,9 @@ Conoce por qué es la forma más confiable de mejorar tu cuidado diario.
   } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
   // --- 2. Configuración de Firebase ---
+  // Recuerda poner tu apiKey real aquí
   const firebaseConfig = {
-    // 👇 ¡ERROR CORREGIDO AQUÍ! 
-    // Tu apiKey real empieza con "AIzaSy..."
-    apiKey: "1:614941761166:web:b4b94a25e59e50ce80b3df", 
+    apiKey: "248793722629", 
     authDomain: "seguisalud-7ed62.firebaseapp.com",
     projectId: "seguisalud-7ed62",
     storageBucket: "seguisalud-7ed62.firebasestorage.app",
@@ -1042,27 +1037,33 @@ Conoce por qué es la forma más confiable de mejorar tu cuidado diario.
   contactForm.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const name = document.getElementById("name").value;
+    // --- ¡CAMBIOS AQUÍ! ---
+    // Obtenemos los nuevos valores
+    const nombres = document.getElementById("nombres").value;
+    const apellidos = document.getElementById("apellidos").value;
     const email = document.getElementById("email").value;
-    const phone = document.getElementById("phone").value;
-    const category = document.getElementById("category").value;
+    const phone = document.getElementById("phone").value; // 'phone' ya lo teníamos
     const message = document.getElementById("message").value;
 
-    // 👇 ¡CAMBIO AÑADIDO AQUÍ!
-    // Ahora también comprueba que 'category' no esté vacía.
-    if (!name || !email || !message || !category) {
-      alert("Por favor, completa todos los campos del formulario.");
-      return; // Detiene la ejecución
+    // --- ¡CAMBIOS AQUÍ! ---
+    // Actualizamos la validación (quitamos 'category' y añadimos 'nombres' y 'apellidos')
+    // El teléfono es opcional, así que no lo validamos
+    if (!nombres || !apellidos || !email || !message) {
+      alert("Por favor, completa todos los campos (Nombres, Apellidos, Correo y Comentarios).");
+      return; 
     }
 
     try {
+      // --- ¡CAMBIOS AQUÍ! ---
+      // Guardamos los nuevos campos en la colección "contactos"
       const docRef = await addDoc(collection(db, "contactos"), {
-        name: name,
+        nombres: nombres,
+        apellidos: apellidos,
         email: email,
         phone: phone,
-        category: category,
         message: message,
         sentAt: serverTimestamp() 
+        // Se eliminó 'category'
       });
 
       console.log("Documento escrito con ID: ", docRef.id);
